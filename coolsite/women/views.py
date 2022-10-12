@@ -9,7 +9,7 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
 
 
 def index(request):
-    posts = Women.objects.all()
+    posts = Women.objects.filter(is_published=True)
     cats = Category.objects.all()
 
     context = {
@@ -58,8 +58,6 @@ def show_category(request, cat_id):
 
     return render(request, 'women/index.html', context=context)
 
+
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
-
-
-
